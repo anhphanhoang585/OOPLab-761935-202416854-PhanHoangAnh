@@ -1,0 +1,12 @@
+6.1.
+- What happens if users choose “Cancel”?
+Khi người dùng nhấn chọn nút "Cancel", phương thức showConfirmDialog sẽ trả về một giá trị số nguyên 
+khác với hằng số YES_OPTION. Dựa trên cấu trúc điều kiện toán tử ba ngôi trong mã nguồn, chương trình 
+sẽ mặc định coi hành động này là một lựa chọn phủ định và hiển thị thông báo: "You've chosen: No".
+
+- How to customize the options to users, e.g. only two options: “Yes” and “No”, OR “I do” and “I don’t”?
+Để tùy biến các nút bấm, chúng ta có thể thay đổi tham số optionType thành JOptionPane.YES_NO_OPTION 
+nếu chỉ muốn giữ lại hai lựa chọn "Yes" và "No". Trong trường hợp muốn thay đổi hoàn toàn nội dung hiển 
+thị của các nút (ví dụ: "I do" và "I don't"), giải pháp tối ưu là sử dụng phương thức showOptionDialog.
+ Phương thức này cho phép chúng ta truyền vào một mảng các đối tượng Object[] options = {"I do", "I 
+ don’t"}; để định nghĩa tên các nút bấm theo nhu cầu cụ thể của ứng dụng.
