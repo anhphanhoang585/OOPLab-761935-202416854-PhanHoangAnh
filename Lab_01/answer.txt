@@ -10,3 +10,4 @@ nếu chỉ muốn giữ lại hai lựa chọn "Yes" và "No". Trong trường 
 thị của các nút (ví dụ: "I do" và "I don't"), giải pháp tối ưu là sử dụng phương thức showOptionDialog.
  Phương thức này cho phép chúng ta truyền vào một mảng các đối tượng Object[] options = {"I do", "I 
  don’t"}; để định nghĩa tên các nút bấm theo nhu cầu cụ thể của ứng dụng.
+
