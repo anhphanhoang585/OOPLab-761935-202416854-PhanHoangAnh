@@ -3,14 +3,13 @@ public class Cart {
     private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
     private int qtyOrdered = 0;
 
-    // Phương thức thêm DVD vào giỏ hàng
+    // 1. Phương thức gốc: Thêm 1 DVD
     public void addDigitalVideoDisc(DigitalVideoDisc disc) {
         if (qtyOrdered < MAX_NUMBERS_ORDERED) {
             itemsOrdered[qtyOrdered] = disc;
             qtyOrdered++;
             System.out.println("The disc \"" + disc.getTitle() + "\" has been added.");
             
-            // Thông báo nếu giỏ hàng gần đầy (Đúng yêu cầu Task 11)
             if (qtyOrdered == MAX_NUMBERS_ORDERED) {
                 System.out.println("The cart is full.");
             } else if (qtyOrdered >= MAX_NUMBERS_ORDERED - 2) {
@@ -21,12 +20,36 @@ public class Cart {
         }
     }
 
-    // Task 13: Phương thức xóa DVD khỏi giỏ hàng
+    // --- TASK 14.1: Nạp chồng với tham số là MẢNG (Array) ---
+    public void addDigitalVideoDisc(DigitalVideoDisc [] dvdList) {
+        for (DigitalVideoDisc disc : dvdList) {
+            addDigitalVideoDisc(disc); // Gọi lại phương thức thêm 1 đĩa để dùng chung logic
+        }
+    }
+
+    // --- TASK 14.2: Nạp chồng với tham số là 2 DVD ---
+    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+        addDigitalVideoDisc(dvd1);
+        addDigitalVideoDisc(dvd2);
+    }
+
+    /* 
+       Gợi ý thêm (Varargs): Để truyền số lượng tham số tùy ý (arbitrary number of arguments)
+       Bạn có thể thay thế hàm nhận mảng ở trên bằng hàm này. 
+       Ưu điểm: Linh hoạt hơn, truyền 1, 2, hay 10 đĩa đều được mà không cần tạo mảng thủ công.
+       
+       public void addDigitalVideoDisc(DigitalVideoDisc... dvds) {
+           for (DigitalVideoDisc disc : dvds) {
+               addDigitalVideoDisc(disc);
+           }
+       }
+    */
+
+    // Task 13: Xóa DVD
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
         boolean found = false;
         for (int i = 0; i < qtyOrdered; i++) {
             if (itemsOrdered[i] == disc) {
-                // Dịch chuyển các phần tử phía sau lên trước
                 for (int j = i; j < qtyOrdered - 1; j++) {
                     itemsOrdered[j] = itemsOrdered[j + 1];
                 }
@@ -42,7 +65,7 @@ public class Cart {
         }
     }
 
-    // Phương thức tính tổng tiền
+    // Tính tổng tiền
     public float totalCost() {
         float total = 0;
         for (int i = 0; i < qtyOrdered; i++) {
@@ -51,12 +74,11 @@ public class Cart {
         return total;
     }
 
-    // Bổ sung: Phương thức in danh sách giỏ hàng (Bỏ từ khóa static đi)
+    // In giỏ hàng
     public void printCart() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
         for (int i = 0; i < qtyOrdered; i++) {
-            // In theo cột: STT, Tên (canh lề 20 ký tự), Giá
             System.out.printf("%d. %-20s - %.2f $\n", (i + 1), itemsOrdered[i].getTitle(), itemsOrdered[i].getCost());
         }
         System.out.printf("Total Cost: %.2f $\n", totalCost());
