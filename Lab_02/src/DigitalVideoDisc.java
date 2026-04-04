@@ -6,7 +6,11 @@ public class DigitalVideoDisc {
     private int length;
     private float cost;
 
-    // Task 9: Tạo Accessors (Getters). Không tạo Mutators (Setters) theo yêu cầu.
+    // Task 16: Thêm thuộc tính lớp (static) và thuộc tính đối tượng (id)
+    private static int nbDigitalVideoDiscs = 0;
+    private int id;
+
+    // Task 9: Các phương thức Getters
     public String getTitle() {
         return title;
     }
@@ -27,12 +31,19 @@ public class DigitalVideoDisc {
         return cost;
     }
 
-    // Task 10: Các hàm khởi tạo (Constructors) - Nạp chồng phương thức
+    // Task 16: Thêm Getter cho id
+    public int getId() {
+        return id;
+    }
+
+    // Task 10: Cập nhật các hàm khởi tạo (Constructors) để tự động gán ID
     
     // 1. Tạo đối tượng DVD theo tiêu đề (title)
     public DigitalVideoDisc(String title) {
         super();
         this.title = title;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
     }
 
     // 2. Tạo đối tượng DVD theo danh mục, tiêu đề và giá thành
@@ -41,6 +52,8 @@ public class DigitalVideoDisc {
         this.category = category;
         this.title = title;
         this.cost = cost;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
     }
 
     // 3. Tạo đối tượng DVD theo đạo diễn, danh mục, tiêu đề và giá thành
@@ -50,6 +63,8 @@ public class DigitalVideoDisc {
         this.category = category;
         this.title = title;
         this.cost = cost;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
     }
 
     // 4. Tạo đối tượng DVD bằng tất cả các thuộc tính
@@ -60,11 +75,12 @@ public class DigitalVideoDisc {
         this.director = director;
         this.length = length;
         this.cost = cost;
-        
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
     }
 
-
+    // Task 15: Setter cho title
     public void setTitle(String title) {
-    this.title = title;
-}
+        this.title = title;
+    }
 }
