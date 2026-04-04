@@ -8,6 +8,7 @@ public class AimsProject {
         System.out.println("DVD vừa tạo: " + dvd1.getTitle() + " - Giá: " + dvd1.getCost() + "$");
 
         // 1. Tạo mới một giỏ hàng
+        
         Cart anOrder = new Cart();
 
         // 2. Thêm các DVD vào giỏ hàng (Sử dụng cả dvd1 đã tạo ở trên)
@@ -36,7 +37,7 @@ public class AimsProject {
         System.out.print("Total Cost after removal is: ");
         System.out.println(anOrder.totalCost());
         
-        // In lại danh sách giỏ hàng sau khi cập nhật
+      
         anOrder.printCart();
     }
 }

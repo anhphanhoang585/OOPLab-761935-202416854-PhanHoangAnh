@@ -51,7 +51,7 @@ public class Cart {
         return total;
     }
 
-    // Bổ sung: Phương thức in danh sách giỏ hàng (Bỏ từ khóa static đi)
+   
     public void printCart() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
