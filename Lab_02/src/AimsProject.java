@@ -7,6 +7,7 @@ public class AimsProject {
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
         System.out.println("DVD vừa tạo: " + dvd1.getTitle() + " - Giá: " + dvd1.getCost() + "$");
 
+<<<<<<< HEAD
         // 1. Tạo mới một giỏ hàng
         
         Cart anOrder = new Cart();
@@ -39,5 +40,8 @@ public class AimsProject {
         
       
         anOrder.printCart();
+=======
+        
+>>>>>>> feature/initial-aims
     }
 }
