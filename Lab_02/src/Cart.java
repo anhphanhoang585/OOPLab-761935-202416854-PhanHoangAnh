@@ -33,7 +33,25 @@ public class Cart {
         addDigitalVideoDisc(dvd2);
     }
 
-    
+    public void searchById(int id) {
+        
+    }
+
+    public void searchByTitle(String title) {
+     
+    }
+
+    public void sortByTitle() {
+        
+    }
+
+    public void sortByCost() {
+        
+    }
+
+    public void placeOrder() {
+
+    }
 
     // Task 13: Xóa DVD
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
