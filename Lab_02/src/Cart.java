@@ -33,17 +33,7 @@ public class Cart {
         addDigitalVideoDisc(dvd2);
     }
 
-    /* 
-       Gợi ý thêm (Varargs): Để truyền số lượng tham số tùy ý (arbitrary number of arguments)
-       Bạn có thể thay thế hàm nhận mảng ở trên bằng hàm này. 
-       Ưu điểm: Linh hoạt hơn, truyền 1, 2, hay 10 đĩa đều được mà không cần tạo mảng thủ công.
-       
-       public void addDigitalVideoDisc(DigitalVideoDisc... dvds) {
-           for (DigitalVideoDisc disc : dvds) {
-               addDigitalVideoDisc(disc);
-           }
-       }
-    */
+    
 
     // Task 13: Xóa DVD
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
