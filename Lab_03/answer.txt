@@ -1,0 +1,22 @@
+Question 1: Is JAVA a Pass by Value or a Pass by Reference programming language?
+Java là một ngôn ngữ lập trình truyền tham trị (pass-by-value). Điều này có nghĩa là khi 
+truyền một tham số vào phương thức, Java luôn tạo ra một bản sao của giá trị đó thay vì 
+truyền chính đối tượng gốc.
+
+Question 2: After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?
+Nguyên nhân là do cơ chế truyền tham trị của Java đối với biến tham chiếu. Khi truyền các 
+đối tượng vào hàm swap, Java chỉ tạo ra các bản sao của tham chiếu (địa chỉ vùng nhớ). Việc 
+hoán đổi trong hàm chỉ tác động lên các biến cục bộ (bản sao), nên các tham chiếu gốc bên
+ ngoài vẫn trỏ về đối tượng cũ, dẫn đến không có sự thay đổi.
+
+Question 3: After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?
+Trong phương thức changeTitle, lệnh dvd.setTitle(title) tác động trực tiếp lên đối tượng mà 
+tham chiếu 'dvd' đang trỏ tới (cũng chính là jungleDVD). Do đó, thuộc tính của đối tượng bị 
+thay đổi. Tuy nhiên, lệnh dvd = new DigitalVideoDisc(oldTitle) sau đó chỉ làm thay đổi tham 
+chiếu cục bộ của biến 'dvd', không ảnh hưởng đến tham chiếu gốc bên ngoài.
+
+Question 4: If you create a constructor method to build a DVD by title then create a 
+constructor method to build a DVD by category. Does JAVA allow you to do this?
+Không, Java không cho phép điều này vì cả hai constructor đều có cùng kiểu dữ liệu tham số 
+là String. Quy tắc Overloading yêu cầu danh sách tham số phải khác nhau về kiểu dữ liệu, số 
+lượng hoặc thứ tự để trình biên dịch có thể phân biệt được.
