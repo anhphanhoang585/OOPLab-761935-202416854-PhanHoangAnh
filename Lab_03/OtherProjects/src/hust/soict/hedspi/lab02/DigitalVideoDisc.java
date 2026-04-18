@@ -1,18 +1,17 @@
-package hust.soict.hedspi.aims.disc;
-
+﻿package hust.soict.hedspi.lab02;
 public class DigitalVideoDisc {
-    // Task 8: Các thuộc tính (attributes)
+    // Task 8: CÃ¡c thuá»™c tÃ­nh (attributes)
     private String title;
     private String category;
     private String director;
     private int length;
     private float cost;
 
-    // Task 16: Thêm thuộc tính lớp (static) và thuộc tính đối tượng (id)
+    // Task 16: ThÃªm thuá»™c tÃ­nh lá»›p (static) vÃ  thuá»™c tÃ­nh Ä‘á»‘i tÆ°á»£ng (id)
     private static int nbDigitalVideoDiscs = 0;
     private int id;
 
-    // Task 9: Các phương thức Getters
+    // Task 9: CÃ¡c phÆ°Æ¡ng thá»©c Getters
     public String getTitle() {
         return title;
     }
@@ -33,14 +32,14 @@ public class DigitalVideoDisc {
         return cost;
     }
 
-    // Task 16: Thêm Getter cho id
+    // Task 16: ThÃªm Getter cho id
     public int getId() {
         return id;
     }
 
-    // Task 10: Cập nhật các hàm khởi tạo (Constructors) để tự động gán ID
+    // Task 10: Cáº­p nháº­t cÃ¡c hÃ m khá»Ÿi táº¡o (Constructors) Ä‘á»ƒ tá»± Ä‘á»™ng gÃ¡n ID
     
-    // 1. Tạo đối tượng DVD theo tiêu đề (title)
+    // 1. Táº¡o Ä‘á»‘i tÆ°á»£ng DVD theo tiÃªu Ä‘á» (title)
     public DigitalVideoDisc(String title) {
         super();
         this.title = title;
@@ -48,17 +47,17 @@ public class DigitalVideoDisc {
         this.id = nbDigitalVideoDiscs;
     }
 
-    // 2. Tạo đối tượng DVD theo tiêu đề, danh mục và giá thành
-    public DigitalVideoDisc(String title, String category, float cost) {
+    // 2. Táº¡o Ä‘á»‘i tÆ°á»£ng DVD theo danh má»¥c, tiÃªu Ä‘á» vÃ  giÃ¡ thÃ nh
+    public DigitalVideoDisc(String category, String title, float cost) {
         super();
-        this.title = title;
         this.category = category;
+        this.title = title;
         this.cost = cost;
         nbDigitalVideoDiscs++;
         this.id = nbDigitalVideoDiscs;
     }
 
-    // 3. Tạo đối tượng DVD theo đạo diễn, danh mục, tiêu đề và giá thành
+    // 3. Táº¡o Ä‘á»‘i tÆ°á»£ng DVD theo Ä‘áº¡o diá»…n, danh má»¥c, tiÃªu Ä‘á» vÃ  giÃ¡ thÃ nh
     public DigitalVideoDisc(String director, String category, String title, float cost) {
         super();
         this.director = director;
@@ -69,7 +68,7 @@ public class DigitalVideoDisc {
         this.id = nbDigitalVideoDiscs;
     }
 
-    // 4. Tạo đối tượng DVD bằng tất cả các thuộc tính
+    // 4. Táº¡o Ä‘á»‘i tÆ°á»£ng DVD báº±ng táº¥t cáº£ cÃ¡c thuá»™c tÃ­nh
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
         super();
         this.title = title;
@@ -86,16 +85,5 @@ public class DigitalVideoDisc {
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return "DVD - [" + title + "] - [" + category + "] - [" + director + "] - [" + length + "]: [" + cost + "] $";
-    }
-
-    public boolean isMatch(String title) {
-        if (this.title != null && this.title.toLowerCase().contains(title.toLowerCase())) {
-            return true;
-        }
-        return false;
-    }
-
+    
 }

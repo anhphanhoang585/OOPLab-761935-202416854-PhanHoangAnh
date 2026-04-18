@@ -1,5 +1,6 @@
-package hust.soict.hedspi.aims.cart;
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+﻿package hust.soict.hedspi.test.cart;
+import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 
 public class CartTest {
     public static void main(String[] args) {
@@ -33,3 +34,4 @@ public class CartTest {
         cart.searchByTitle("Harry Potter"); // Non-existing Title
     }
 }
+

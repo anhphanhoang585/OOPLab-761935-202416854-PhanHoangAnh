@@ -1,6 +1,6 @@
-package hust.soict.hedspi.aims.store;
+﻿package hust.soict.hedspi.aims.store;
 
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 
 public class Store {
     private DigitalVideoDisc itemsInStore[];
@@ -26,11 +26,11 @@ public class Store {
         boolean found = false;
         for (int i = 0; i < qtyInStore; i++) {
             if (itemsInStore[i] == disc) {
-                // Dịch chuyển các phần tử ở bên phải sang trái 1 bước để lấp khoảng trống
+                // Dá»‹ch chuyá»ƒn cÃ¡c pháº§n tá»­ á»Ÿ bÃªn pháº£i sang trÃ¡i 1 bÆ°á»›c Ä‘á»ƒ láº¥p khoáº£ng trá»‘ng
                 for (int j = i; j < qtyInStore - 1; j++) {
                     itemsInStore[j] = itemsInStore[j + 1];
                 }
-                itemsInStore[qtyInStore - 1] = null; // Xóa tham chiếu tới DVD ở phần tử cuối
+                itemsInStore[qtyInStore - 1] = null; // XÃ³a tham chiáº¿u tá»›i DVD á»Ÿ pháº§n tá»­ cuá»‘i
                 qtyInStore--;
                 found = true;
                 System.out.println("The disc \"" + disc.getTitle() + "\" has been removed from the store.");
@@ -42,3 +42,4 @@ public class Store {
         }
     }
 }
+

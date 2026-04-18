@@ -1,12 +1,12 @@
-package hust.soict.hedspi.aims.cart;
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+﻿package hust.soict.hedspi.aims.cart;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
     private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
     private int qtyOrdered = 0;
 
-    // 1. Phương thức gốc: Thêm 1 DVD
+    // 1. PhÆ°Æ¡ng thá»©c gá»‘c: ThÃªm 1 DVD
     public void addDigitalVideoDisc(DigitalVideoDisc disc) {
         if (qtyOrdered < MAX_NUMBERS_ORDERED) {
             itemsOrdered[qtyOrdered] = disc;
@@ -23,14 +23,14 @@ public class Cart {
         }
     }
 
-    // --- TASK 14.1: Nạp chồng với tham số là MẢNG (Array) ---
+    // --- TASK 14.1: Náº¡p chá»“ng vá»›i tham sá»‘ lÃ  Máº¢NG (Array) ---
     public void addDigitalVideoDisc(DigitalVideoDisc [] dvdList) {
         for (DigitalVideoDisc disc : dvdList) {
-            addDigitalVideoDisc(disc); // Gọi lại phương thức thêm 1 đĩa để dùng chung logic
+            addDigitalVideoDisc(disc); // Gá»i láº¡i phÆ°Æ¡ng thá»©c thÃªm 1 Ä‘Ä©a Ä‘á»ƒ dÃ¹ng chung logic
         }
     }
 
-    // --- TASK 14.2: Nạp chồng với tham số là 2 DVD ---
+    // --- TASK 14.2: Náº¡p chá»“ng vá»›i tham sá»‘ lÃ  2 DVD ---
     public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
         addDigitalVideoDisc(dvd1);
         addDigitalVideoDisc(dvd2);
@@ -75,7 +75,7 @@ public class Cart {
 
     }
 
-    // Task 13: Xóa DVD
+    // Task 13: XÃ³a DVD
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
         boolean found = false;
         for (int i = 0; i < qtyOrdered; i++) {
@@ -95,7 +95,7 @@ public class Cart {
         }
     }
 
-    // Tính tổng tiền
+    // TÃ­nh tá»•ng tiá»n
     public float totalCost() {
         float total = 0;
         for (int i = 0; i < qtyOrdered; i++) {
@@ -104,7 +104,7 @@ public class Cart {
         return total;
     }
 
-    // In giỏ hàng
+    // In giá» hÃ ng
     public void print() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
