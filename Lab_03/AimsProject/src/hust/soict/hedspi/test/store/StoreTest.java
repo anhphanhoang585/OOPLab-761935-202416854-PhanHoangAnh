@@ -1,4 +1,4 @@
-﻿package hust.soict.hedspi.test.store;
+package hust.soict.hedspi.test.store;
 
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.store.Store;
@@ -12,17 +12,17 @@ public class StoreTest {
 
         // Ká»‹ch báº£n thÃªm cÃ¡c thá»ƒ loáº¡i Ä‘Ä©a vÃ o cá»­a hÃ ng
         System.out.println("--- Test addDVD ---");
-        store.addDVD(dvd1);
-        store.addDVD(dvd2);
-        store.addDVD(dvd3);
+        store.addMedia(dvd1);
+        store.addMedia(dvd2);
+        store.addMedia(dvd3);
 
         // Ká»‹ch báº£n xÃ³a DVD khá»i cá»­a hÃ ng
         System.out.println("\n--- Test removeDVD ---");
         System.out.println("> Äang thá»­ xÃ³a Ä‘Ä©a Star Wars (cÃ³ tá»“n táº¡i):");
-        store.removeDVD(dvd2);
+        store.removeMedia(dvd2);
         
         System.out.println("\n> Äang thá»­ xÃ³a láº¡i Ä‘Ä©a Star Wars (khÃ´ng cÃ²n tá»“n táº¡i ná»¯a):");
-        store.removeDVD(dvd2); 
+        store.removeMedia(dvd2);
     }
 }
 

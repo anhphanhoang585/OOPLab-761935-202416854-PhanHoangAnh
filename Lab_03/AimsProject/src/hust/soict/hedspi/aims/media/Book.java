@@ -8,7 +8,15 @@ public class Book extends Media {
     private List<String> authors = new ArrayList<String>();
 
     public Book() {
-        // TODO Auto-generated constructor stub
+        super();
+    }
+
+    public Book(String title) {
+        super(title);
+    }
+
+    public Book(String title, String category, float cost) {
+        super(title, category, cost);
     }
 
 
@@ -33,5 +41,10 @@ public class Book extends Media {
         } else {
             System.out.println("Tác giả \"" + authorName + "\" không tồn tại trong danh sách!");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Book - [" + getTitle() + "] - [" + getCategory() + "] - Authors: " + authors.toString() + ": [" + getCost() + "] $";
     }
 }
