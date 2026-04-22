@@ -1,0 +1,12 @@
+1. What class should implement the Comparable interface?
+Để đảm bảo tính nhất quán và thiết kế hướng đối tượng tốt, giao diện Comparable nên được implement tại lớp trừu tượng Media. Do Media đóng vai trò là lớp cha của tất cả các loại hình truyền thông (như DigitalVideoDisc, CompactDisc, Book), việc cung cấp logic trong compareTo() ở mức độ tập trung này sẽ giúp mọi lớp con nghiễm nhiên thừa hưởng được khả năng so sánh mặc định mà không cần viết lại mã nguồn.
+
+2. In those classes, how should you implement the compareTo() method be to reflect the ordering that we want?
+Phương thức compareTo() cần được cài đặt linh hoạt để biểu diễn thứ tự sắp xếp tự nhiên (natural ordering) của hệ thống. Chẳng hạn: thứ tự ưu tiên đầu tiên là sắp xếp theo bảng chữ cái của tiêu đề (title tăng dần); trong trường hợp các đối tượng có tiêu đề trùng khớp, tiêu chí phụ sẽ được kích hoạt để sắp xếp dựa trên chi phí (cost giảm dần).
+
+3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+Không thể thực hiện được. Cách tiếp cận bằng interface Comparable bị giới hạn ở việc chỉ có thể cung cấp duy nhất một quy tắc phân loại tự nhiên (thông qua hàm compareTo()). 
+Để hệ thống hỗ trợ đa dạng các bộ luật sắp xếp khác nhau (vừa theo tiêu đề-giá vừa theo giá-tiêu đề), chúng ta bắt buộc phải sử dụng interface Comparator. Cơ chế của Comparator cho phép xây dựng nhiều tập quy tắc so sánh tùy biến dưới dạng các đối tượng độc lập, hoàn toàn tách biệt khỏi mã nguồn của lớp Media.
+
+4. Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+Để xử lý luật sắp xếp đặc thù dành riêng cho ngách DVD, giải pháp tối ưu là tiến hành ghi đè (override) lại phương thức compareTo() ngay bên trong nội bộ lớp con DigitalVideoDisc. Logic ghi đè này sẽ triển khai các luồng rẽ nhánh tương ứng: ưu tiên một kiểm tra title theo thứ tự từ điển, ưu tiên hai so sánh length theo thứ tự giảm dần, và nếu vẫn bằng nhau thì mới đối chiếu đến cost.
