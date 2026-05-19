@@ -1,12 +1,15 @@
-1. What class should implement the Comparable interface?
-Để đảm bảo tính nhất quán và thiết kế hướng đối tượng tốt, giao diện Comparable nên được implement tại lớp trừu tượng Media. Do Media đóng vai trò là lớp cha của tất cả các loại hình truyền thông (như DigitalVideoDisc, CompactDisc, Book), việc cung cấp logic trong compareTo() ở mức độ tập trung này sẽ giúp mọi lớp con nghiễm nhiên thừa hưởng được khả năng so sánh mặc định mà không cần viết lại mã nguồn.
-
-2. In those classes, how should you implement the compareTo() method be to reflect the ordering that we want?
-Phương thức compareTo() cần được cài đặt linh hoạt để biểu diễn thứ tự sắp xếp tự nhiên (natural ordering) của hệ thống. Chẳng hạn: thứ tự ưu tiên đầu tiên là sắp xếp theo bảng chữ cái của tiêu đề (title tăng dần); trong trường hợp các đối tượng có tiêu đề trùng khớp, tiêu chí phụ sẽ được kích hoạt để sắp xếp dựa trên chi phí (cost giảm dần).
-
-3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
-Không thể thực hiện được. Cách tiếp cận bằng interface Comparable bị giới hạn ở việc chỉ có thể cung cấp duy nhất một quy tắc phân loại tự nhiên (thông qua hàm compareTo()). 
-Để hệ thống hỗ trợ đa dạng các bộ luật sắp xếp khác nhau (vừa theo tiêu đề-giá vừa theo giá-tiêu đề), chúng ta bắt buộc phải sử dụng interface Comparator. Cơ chế của Comparator cho phép xây dựng nhiều tập quy tắc so sánh tùy biến dưới dạng các đối tượng độc lập, hoàn toàn tách biệt khỏi mã nguồn của lớp Media.
-
-4. Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
-Để xử lý luật sắp xếp đặc thù dành riêng cho ngách DVD, giải pháp tối ưu là tiến hành ghi đè (override) lại phương thức compareTo() ngay bên trong nội bộ lớp con DigitalVideoDisc. Logic ghi đè này sẽ triển khai các luồng rẽ nhánh tương ứng: ưu tiên một kiểm tra title theo thứ tự từ điển, ưu tiên hai so sánh length theo thứ tự giảm dần, và nếu vẫn bằng nhau thì mới đối chiếu đến cost.
+1. So sánh các Container cấp cao (Top-level Containers)
+AWT: Sử dụng các lớp cơ bản như Frame, Dialog, và Window. Đây là các thành phần giao tiếp trực tiếp với hệ điều hành để tạo cửa sổ ứng dụng.
+Swing: Sử dụng các phiên bản nâng cấp có tiền tố "J" như JFrame, JDialog, và JWindow. So với AWT, các container của Swing cung cấp nhiều tính năng mở rộng, khả năng tùy biến sâu hơn và hỗ trợ quản lý thành phần con hiệu quả hơn thông qua RootPane.
+2. So sánh tên lớp của các Component
+AWT: Các thành phần giao diện mang tên gọi nguyên bản, đơn giản như Button, Label, TextField, Checkbox, List.
+Swing: Để kế thừa và mở rộng từ AWT, các thành phần của Swing được đặt tên bằng cách thêm tiền tố "J" vào trước tên của AWT (ví dụ: JButton, JLabel, JTextField, JCheckBox, JList). Quy ước đặt tên này giúp lập trình viên dễ dàng nhận diện và phân biệt giữa hai bộ thư viện trong cùng một dự án.
+3. So sánh cơ chế xử lý sự kiện (Event Handling)
+AWT: Sử dụng mô hình Delegation Event Model truyền thống với các bộ lắng nghe (listener) cơ bản. Tuy nhiên, khả năng xử lý các tương tác phức tạp còn hạn chế và kém linh hoạt.
+Swing: Dựa trên mô hình của AWT nhưng tối ưu hóa tốt hơn. Điểm khác biệt quan trọng là Swing sử dụng Event Dispatch Thread (EDT) để quản lý các sự kiện giao diện, giúp đảm bảo tính an toàn cho luồng dữ liệu (thread-safety). Điều này giúp việc xử lý các tác vụ đồng thời trở nên mượt mà và ít gây lỗi hơn so với AWT.
+4. Sự khác biệt về giao diện (Look-and-Feel)
+AWT: Được coi là "Heavyweight components" (thành phần hạng nặng). Giao diện của AWT hoàn toàn phụ thuộc vào hệ điều hành (native look-and-feel), dẫn đến sự khác biệt về thẩm mỹ khi ứng dụng chạy trên Windows, macOS hay Linux.
+Swing: Là các "Lightweight components" (thành phần hạng nhẹ). Điểm mạnh nhất của Swing là khả năng thay đổi giao diện linh hoạt (Pluggable Look-and-Feel). Người dùng có thể tùy chỉnh để ứng dụng hiển thị đồng nhất trên mọi nền tảng hoặc sử dụng các bộ giao diện cài sẵn như Metal, Nimbus, hay Windows, mang lại trải nghiệm chuyên nghiệp và nhất quán.
+Tổng kết
+AWT: Phù hợp cho các ứng dụng có cấu trúc đơn giản, yêu cầu hiệu năng cơ bản hoặc cần tận dụng giao diện gốc của hệ điều hành.
+Swing: Là lựa chọn tối ưu cho các phần mềm đòi hỏi giao diện phong phú, khả năng tùy biến cao và trải nghiệm người dùng hiện đại, đồng bộ trên đa nền tảng.
