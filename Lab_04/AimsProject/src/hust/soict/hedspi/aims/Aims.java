@@ -3,6 +3,7 @@ package hust.soict.hedspi.aims;
 import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.media.*;
 import hust.soict.hedspi.aims.store.Store;
+import hust.soict.hedspi.aims.screen.manager.StoreManagerScreen;
 import java.util.Scanner;
 
 public class Aims {
@@ -10,9 +11,31 @@ public class Aims {
     private static Cart cart = new Cart();
     private static Scanner scanner = new Scanner(System.in);
 
+    public static int getSafeInt() {
+        while (true) {
+            try {
+                int val = scanner.nextInt();
+                scanner.nextLine(); // consume newline
+                return val;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter a valid integer choice:");
+                scanner.nextLine(); // clear buffer
+            }
+        }
+    }
+
     public static void main(String[] args) {
         initData();
-        mainMenu();
+        System.out.println("Select Interface Mode:");
+        System.out.println("1. Console Mode");
+        System.out.println("2. GUI Store Manager Mode");
+        System.out.print("Please choose (1-2): ");
+        int choice = getSafeInt();
+        if (choice == 2) {
+            new StoreManagerScreen(store);
+        } else {
+            mainMenu();
+        }
     }
 
     public static void initData() {
@@ -45,8 +68,7 @@ public class Aims {
     public static void mainMenu() {
         while (true) {
             showMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            int choice = getSafeInt();
             switch (choice) {
                 case 1:
                     viewStore();
@@ -73,8 +95,7 @@ public class Aims {
         }
         while (true) {
             storeMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = getSafeInt();
             switch (choice) {
                 case 1:
                     seeMediaDetails();
@@ -119,8 +140,7 @@ public class Aims {
         System.out.println(m.toString());
         while (true) {
             mediaDetailsMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = getSafeInt();
             switch (choice) {
                 case 1:
                     cart.addMedia(m);
@@ -184,18 +204,67 @@ public class Aims {
     public static void updateStore() {
         System.out.println("1. Add media to store");
         System.out.println("2. Remove media from store");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = getSafeInt();
         if (choice == 1) {
-            // Complex case, simplify for now or implement briefly
             System.out.print("Enter category (1. Book, 2. CD, 3. DVD): ");
-            int type = scanner.nextInt();
-            scanner.nextLine();
+            int type = getSafeInt();
             System.out.print("Enter title: ");
             String title = scanner.nextLine();
-            if (type == 1) store.addMedia(new Book(title));
-            else if (type == 2) store.addMedia(new CompactDisc(title));
-            else if (type == 3) store.addMedia(new DigitalVideoDisc(title));
+            System.out.print("Enter category name: ");
+            String category = scanner.nextLine();
+            System.out.print("Enter cost: ");
+            float cost = 0.0f;
+            while (true) {
+                try {
+                    cost = scanner.nextFloat();
+                    scanner.nextLine(); // consume newline
+                    break;
+                } catch (Exception e) {
+                    System.out.print("Invalid cost. Please enter a floating point value: ");
+                    scanner.nextLine(); // clear buffer
+                }
+            }
+            if (type == 1) {
+                Book book = new Book(title, category, cost);
+                System.out.print("Enter authors (comma-separated, or press Enter to skip): ");
+                String authorsInput = scanner.nextLine();
+                if (!authorsInput.trim().isEmpty()) {
+                    String[] authors = authorsInput.split(",");
+                    for (String author : authors) {
+                        book.addAuthor(author.trim());
+                    }
+                }
+                store.addMedia(book);
+            } else if (type == 2) {
+                System.out.print("Enter director: ");
+                String director = scanner.nextLine();
+                System.out.print("Enter artist: ");
+                String artist = scanner.nextLine();
+                System.out.print("Enter CD length (in seconds): ");
+                int length = getSafeInt();
+                CompactDisc cd = new CompactDisc(title, category, director, length, cost, artist);
+                System.out.print("Do you want to add tracks to this CD? (1. Yes, 2. No): ");
+                int addTracks = getSafeInt();
+                if (addTracks == 1) {
+                    while (true) {
+                        System.out.print("Enter track title (or 'done' to stop): ");
+                        String trackTitle = scanner.nextLine();
+                        if (trackTitle.equalsIgnoreCase("done")) {
+                            break;
+                        }
+                        System.out.print("Enter track length (in seconds): ");
+                        int trackLength = getSafeInt();
+                        cd.addTrack(new Track(trackTitle, trackLength));
+                    }
+                }
+                store.addMedia(cd);
+            } else if (type == 3) {
+                System.out.print("Enter director: ");
+                String director = scanner.nextLine();
+                System.out.print("Enter DVD length (in seconds): ");
+                int length = getSafeInt();
+                store.addMedia(new DigitalVideoDisc(title, category, director, length, cost));
+            }
         } else if (choice == 2) {
             System.out.print("Enter title: ");
             String title = scanner.nextLine();
@@ -209,16 +278,14 @@ public class Aims {
         cart.print();
         while (true) {
             cartMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = getSafeInt();
             switch (choice) {
                 case 1:
                     System.out.print("Filter by (1. ID, 2. Title): ");
-                    int filterType = scanner.nextInt();
-                    scanner.nextLine();
+                    int filterType = getSafeInt();
                     if (filterType == 1) {
                         System.out.print("Enter ID: ");
-                        cart.searchById(scanner.nextInt());
+                        cart.searchById(getSafeInt());
                     } else {
                         System.out.print("Enter Title: ");
                         cart.searchByTitle(scanner.nextLine());
@@ -226,8 +293,7 @@ public class Aims {
                     break;
                 case 2:
                     System.out.print("Sort by (1. Title, 2. Cost): ");
-                    int sortType = scanner.nextInt();
-                    scanner.nextLine();
+                    int sortType = getSafeInt();
                     if (sortType == 1) cart.sortByTitle();
                     else cart.sortByCost();
                     break;

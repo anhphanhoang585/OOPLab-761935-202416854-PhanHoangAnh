@@ -31,6 +31,9 @@ public class Track implements Playable {
             return false;
         }
         Track other = (Track) o;
+        if (this.title == null || other.title == null) {
+            return this.title == other.title;
+        }
         return this.title.equals(other.title) && this.length == other.length;
     }
 }
