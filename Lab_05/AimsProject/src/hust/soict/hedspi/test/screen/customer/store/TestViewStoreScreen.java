@@ -1,4 +1,4 @@
-package hust.soict.hedspi.aims.screen.customer;
+package hust.soict.hedspi.test.screen.customer.store;
 
 import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.media.Book;
