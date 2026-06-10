@@ -4,6 +4,7 @@ import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.media.Book;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.CompactDisc;
+import hust.soict.hedspi.aims.exception.Exception;
 
 public class SortTest {
     public static void main(String[] args) throws Exception {
